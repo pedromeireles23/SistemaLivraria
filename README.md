@@ -1,0 +1,1 @@
+Este projeto é um sistema de livraria desenvolvido em C# utilizando aplicação de console, com foco na aplicação prática dos princípios SOLID e de Design Patterns para construção de um código limpo, escalável e de fácil manutenção.
