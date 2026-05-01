@@ -1,4 +1,4 @@
- class Livro
+ public class Livro
 {
     public  Guid Id {get; private set;} 
     public  string Titulo {get; private set;} 
