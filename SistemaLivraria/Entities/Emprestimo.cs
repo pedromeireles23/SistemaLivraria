@@ -4,6 +4,8 @@ public class Emprestimo
   public Usuario Usuario {get; private set;}
   public DateTime DataEmprestimo {get; private set;}
 
+  public Guid Id {get;private set;}
+
   public Emprestimo(Livro livro, Usuario usuario)
   {
     ArgumentNullException.ThrowIfNull(livro); 
@@ -13,6 +15,7 @@ public class Emprestimo
     Usuario = usuario;
     DataEmprestimo = DateTime.Now;
     Livro.Emprestar();
+    Id = new Guid();
     
   }
 }
