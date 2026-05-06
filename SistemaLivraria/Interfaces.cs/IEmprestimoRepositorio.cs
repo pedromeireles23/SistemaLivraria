@@ -1,5 +1,5 @@
-interface IEmprestimoRepositorio
+public interface IEmprestimoRepositorio
 {
-  void Adicionar(Emprestimo emprestimo);
-  Emprestimo BuscarPorId(Guid id);
+  public void Adicionar(Emprestimo emprestimo);
+  public Emprestimo BuscarPorId(Guid id);
 }

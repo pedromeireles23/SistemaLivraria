@@ -1,37 +1,37 @@
 
-public class Biblioteca
+public class Biblioteca 
 {
-  public List <Emprestimo> ListaEmprestimo {get; private set;}
-  public List <Livro> ListaLivros {get;private set;}
-  public List <Usuario> ListaUsuarios {get;private set;}
+  private readonly IEmprestimoRepositorio _emprestimoRepositorio;
+  private readonly ILivroRepositorio _livroRepositorio;
+  private readonly IUsuarioRepositorio _usuarioRepositorio;
 
-  public Biblioteca()
+  public Biblioteca(IEmprestimoRepositorio emprestimoRepositorio,ILivroRepositorio livroRepositorio, IUsuarioRepositorio usuarioRepositorio )
   {
-    ListaEmprestimo = new List<Emprestimo>();
-    ListaLivros = new List<Livro>();
-    ListaUsuarios = new List<Usuario>();
+    _emprestimoRepositorio = emprestimoRepositorio;
+    _livroRepositorio = livroRepositorio;
+    _usuarioRepositorio = usuarioRepositorio;
   }
 
   public void AdicionarLivro(Livro livro)
   {
-    ListaLivros.Add(livro);
+    _livroRepositorio.Adicionar(livro);
   }
   public void AdicionarUsuario(Usuario usuario)
   {
-    ListaUsuarios.Add(usuario);
+    _usuarioRepositorio.Adicionar(usuario);
   }
   public void EmprestarLivro(Guid idLivro, Guid idUsuario)
   {
-   var existeUsuario = ListaUsuarios.FirstOrDefault(u => u.Id == idUsuario);
-   var existeLivro = ListaLivros.FirstOrDefault(l => l.Id == idLivro);
+   var existeUsuario = _usuarioRepositorio.BuscarPorId(idUsuario);
+   var existeLivro = _livroRepositorio.BuscarPorId(idLivro);
    if(existeLivro != null && existeUsuario != null)
     {
       Emprestimo novoEmprestimo = new Emprestimo(existeLivro, existeUsuario);
-      ListaEmprestimo.Add(novoEmprestimo);
+      _emprestimoRepositorio.Adicionar(novoEmprestimo);
     }
     else
     {
-      throw new ArgumentNullException("O objeto não pode ser nulo.");
+      throw new ArgumentNullException("Livro ou Usuário não podem ser nulos");
 
     }
     

@@ -1,5 +1,5 @@
-interface ILivroRepositorio
+public interface ILivroRepositorio
 {
-   void Adicionar(Livro livro);
-  Livro BuscarPorId(Guid id);
+  public void Adicionar(Livro livro);
+  public Livro BuscarPorId(Guid id);
 }

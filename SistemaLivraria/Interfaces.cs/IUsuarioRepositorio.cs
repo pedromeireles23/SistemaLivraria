@@ -1,5 +1,5 @@
-interface IUsuarioRepositorio
+public interface IUsuarioRepositorio
 {
-  void Adicionar(Usuario usuario);
-  Usuario BuscarPorId(Guid id);
+  public void Adicionar(Usuario usuario);
+  public Usuario BuscarPorId(Guid id);
 }
