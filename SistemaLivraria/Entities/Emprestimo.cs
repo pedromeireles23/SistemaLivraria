@@ -1,8 +1,10 @@
+
 public class Emprestimo
 {
   public Livro Livro {get; private set;}
   public Usuario Usuario {get; private set;}
   public DateTime DataEmprestimo {get; private set;}
+  public DateTime? DataDevolucao {get; private set;}
 
   public Guid Id {get;private set;}
 
@@ -16,6 +18,22 @@ public class Emprestimo
     DataEmprestimo = DateTime.Now;
     Livro.Emprestar();
     Id = new Guid();
+    
+  }
+
+  public void DevolverLivro()
+  {
+    
+    if (DataDevolucao == null)
+    {
+      DataDevolucao = DateTime.Now;
+      Livro.Devolver();
+
+    }
+    else
+    {
+      throw new Exception ("Livro já foi devolvido");
+    }
     
   }
 }

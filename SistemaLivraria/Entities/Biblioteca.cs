@@ -36,5 +36,14 @@ public class Biblioteca
     }
     
   }
+  public void FinalizarEmprestimo(Guid idEmprestimo)
+  {
+   var existeEmprestimo = _emprestimoRepositorio.BuscarPorId(idEmprestimo);
+   if(existeEmprestimo != null)
+    {
+      existeEmprestimo.DevolverLivro();
+      
+    }
+  }
 
 }
