@@ -1,11 +1,10 @@
-
-public class Biblioteca 
+public class BibliotecaService
 {
   private readonly IEmprestimoRepositorio _emprestimoRepositorio;
   private readonly ILivroRepositorio _livroRepositorio;
   private readonly IUsuarioRepositorio _usuarioRepositorio;
 
-  public Biblioteca(IEmprestimoRepositorio emprestimoRepositorio,ILivroRepositorio livroRepositorio, IUsuarioRepositorio usuarioRepositorio )
+  public BibliotecaService(IEmprestimoRepositorio emprestimoRepositorio,ILivroRepositorio livroRepositorio, IUsuarioRepositorio usuarioRepositorio )
   {
     _emprestimoRepositorio = emprestimoRepositorio;
     _livroRepositorio = livroRepositorio;
@@ -20,6 +19,7 @@ public class Biblioteca
   {
     _usuarioRepositorio.Adicionar(usuario);
   }
+  
   public void EmprestarLivro(Guid idLivro, Guid idUsuario)
   {
    var existeUsuario = _usuarioRepositorio.BuscarPorId(idUsuario);
@@ -42,8 +42,11 @@ public class Biblioteca
    if(existeEmprestimo != null)
     {
       existeEmprestimo.DevolverLivro();
-      
+
+    }
+    else
+    {
+      throw new Exception ("Emprestimo não pode ser nulo");
     }
   }
-
 }
